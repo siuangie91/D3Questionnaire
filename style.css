@@ -1,0 +1,10 @@
+* {
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
