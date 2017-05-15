@@ -34,19 +34,31 @@
         }
         circle {
             fill: steelblue;
-            cursor: pointer;
             stroke: green;
             stroke-width: 5;
         }
 
-        circle:hover {
+        circle:first-of-type {
+            fill: yellow;
+        }
+
+        circle:not(:first-of-type) {
+            cursor: pointer;
+        }
+
+        circle:not(:first-of-type):hover {
             fill: brown;
+        }
+
+        .text {
+            display: block;
+            position: absolute;
+            text-align: center;
         }
 
         span {
             display: block;
-            position: absolute;
-            text-align: center;
+            margin-bottom: 10px;
         }
 
         .heading {
