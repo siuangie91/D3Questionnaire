@@ -1,3 +1,16 @@
+var files = [];
+var lastFileNum;
+
+d3.json("datafiles.json", function(error, data) {
+    data.forEach(function(d,i) {
+        files.push(d);
+    });
+
+    lastFileNum = (files[files.length - 1].name.substr(4,1));
+
+    console.log("lastFileNum: "+ lastFileNum);
+});
+
 var svg = d3.select("svg");
 var container = d3.select("#container");
 
@@ -61,8 +74,16 @@ function update(data, datasetNum) {
         // Attach click event listener to circles to switch to next dataset
         svg.selectAll("circle.dataset" + datasetNum + ":not(:first-of-type)")
             .on("click", function() {
-                update("data" + ++datasetNum + ".json", 2);
+                update("data" + ++datasetNum + ".json", datasetNum++);
             });
+
+        // If on last dataset, clicking button reloads page.
+        if(svg.selectAll("circle.dataset" + lastFileNum).size()) {
+            svg.selectAll("circle.dataset" + lastFileNum)
+                .on("click", function() {
+                    window.location.reload();
+                });
+        }
 
     });
 }
