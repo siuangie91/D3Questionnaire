@@ -1,8 +1,8 @@
 [
-    {"x": "70", "y": "175", "r": "100", "heading": "3.", "copy": "I'm the header circle."},
+    {"x": "70", "y": "175", "r": "100", "heading": "3.", "copy": "Samuel L. Ipsum"},
     {"x": "160", "y": "400", "r": "80", "heading": "Person 1", "copy": "Well, the way they make shows is, they make one show."},
     {"x": "320", "y": "550", "r": "80", "heading": "Person 2", "copy": "That show's called a pilot."},
     {"x": "440", "y": "350", "r": "80", "heading": "Person 3", "copy": "Some pilots get picked and become television programs."},
     { "x": "650", "y": "500", "r": "80", "heading": "Person 4", "copy": "Then they show that show to the people who make shows."},
-    { "x": "900", "y": "400", "r": "80", "heading": "Person 4", "copy": "Then they show that show to the people who make shows."}
+    { "x": "900", "y": "400", "r": "80", "heading": "Person 5", "copy": "But I can't give you this case, it don't belong to me."}
 ]

@@ -53,21 +53,18 @@ function update(data, datasetNum) {
                 .style("opacity", 1)
             .text(function(d) { return d.copy; });
 
-        svg.selectAll("circle.dataset" + datasetNum).on("click", function() {
-            update("data" + ++datasetNum + ".json", 2);
-        });
+        svg.selectAll("circle.dataset" + datasetNum + ":not(:first-of-type)")
+            .on("click", function() {
+                update("data" + ++datasetNum + ".json", 2);
+            });
     });
 }
 
-d3.select("#start-button")
+d3.select("#start")
     .on("click", function() {
         update("data1.json", 1);
+        this.remove();
     });
-
-//setTimeout(function() {
-//    console.log("Update using data1");
-//    update("data1.json", 1);
-//}, 1000);
 
 
 

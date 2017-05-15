@@ -62,14 +62,19 @@
             padding: 0 10px;
         }
 
+        #start {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
     </style>
 </head>
 <body>
     <div id="container">
-        <svg width="1024" height="768">
-            <circle id="start-button" r="200" cx="512" cy="384"></circle>
-        </svg>
-        <span class="heading" style="left: 50%; top: 50%; transform: translate(-50%, -50%)">Click to Begin</span>
+        <svg width="1024" height="768"></svg>
+        <button id="start">Start</button>
     </div>
 
     <script type="text/javascript" src="script.js"></script>
