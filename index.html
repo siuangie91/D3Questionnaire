@@ -3,14 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>NodeSlideShow_Prototype</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="http://d3js.org/d3.v4.min.js"></script>
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body {
+            background: #000000;
+            border: 0;
+            margin: 0;
+            padding: 0;
+        }
+        #container {
+            background: #ffffff;
+            width: 1024px;
+            height: 768px;
+        }
+        circle {
+            fill: steelblue;
+            cursor: pointer;
+            stroke: green;
+            stroke-width: 5;
+        }
+
+        circle:hover {
+            fill: brown;
+        }
+
+        .heading {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+    </style>
 </head>
 <body>
-    <svg width="900" height="500">
-        <circle cx="125" cy="125" r="10"></circle>
-    </svg>
+    <div id="container">
+        <svg width="1024" height="768">
+<!--
+            <g>
+                <circle cx="75" cy="75" r="100"></circle>
+                <text x="25" y="25" class="heading">1.</text>
+                <text x="75" y="75" class="copy">Lorem ipsum INIT</text>
+            </g>
+-->
+        </svg>
+    </div>
 
     <script type="text/javascript" src="script.js"></script>
 </body>

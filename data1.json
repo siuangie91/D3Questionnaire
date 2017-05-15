@@ -1,7 +1,7 @@
 [
-    {"x": "254", "y": "278"},
-    {"x": "354", "y": "478"},
-    {"x": "154", "y": "78"},
-    {"x": "654", "y": "378"},
-    { "x": "776", "y": "362"}
+    {"x": "100", "y": "100", "r": "100", "heading": "1.", "copy": "I'm the header circle."},
+    {"x": "250", "y": "300", "r": "80", "heading": "Person 1", "copy": "Lorem ipsum dolor sit amet, consectetur adipisicing elit."},
+    {"x": "450", "y": "400", "r": "80", "heading": "Person 2", "copy": "Recusandae eligendi similique iure officia corporis perferendis et a."},
+    {"x": "650", "y": "200", "r": "80", "heading": "Person 3", "copy": "Impedit, rem quo illum!"},
+    { "x": "900", "y": "300", "r": "80", "heading": "Person 4", "copy": "Id fugiat labore rerum blanditiis explicabo!"}
 ]
