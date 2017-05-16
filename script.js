@@ -29,7 +29,7 @@ var update = function(data, datasetNum) {
                 .style("width", "40px")
                 .style("height", "40px")
                 .style("top", function(d) { return +d.y + 200 + "px";})
-            .transition().duration(1200).delay(function(d,i) { return i * 200 + 200; })
+            .transition().duration(1200).delay(function(d,i) { return i * 200 + 400; })
                 .style("width", function(d) { return +d.r * 2 + "px"; })
                 .style("height", function(d) { return +d.r * 2 + "px"; })
                 .style("top", function(d) { return +d.y - (d.r / 2) + "px";});

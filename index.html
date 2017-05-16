@@ -51,6 +51,46 @@
             color: #000000;
         }
 
+        .group:nth-of-type(odd) {
+            animation: bobble 8s ease infinite;
+        }
+
+        .group:nth-of-type(even) {
+            animation: bobble 8s ease infinite reverse;
+        }
+
+        @keyframes bobble {
+            0% {
+                margin-left: 0;
+                margin-top: 0;
+                transform: scale(1);
+            }
+
+            20% {
+                margin-left: -10px;
+                margin-top: 10px;
+                transform: scale(1.1);
+            }
+
+            40% {
+                margin-left: 10px;
+                margin-top: -10px;
+                transform: scale(1.05);
+            }
+
+            60% {
+                margin-left: -10px;
+                margin-top: -10px;
+                transform: scale(1);
+            }
+
+            80% {
+                margin-left: 10px;
+                margin-top: 10px;
+                transform: scale(1.05);
+            }
+        }
+
         .group:first-of-type .circle {
             background: yellow;
         }
