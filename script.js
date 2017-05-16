@@ -71,6 +71,7 @@ var update = function(data, datasetNum) {
             container.selectAll(".group.dataset" + lastFileNum + ":not(:first-of-type)")
                 .on("click", function() {
                     window.location.reload();
+                    this.blur();
                 });
         }
 
