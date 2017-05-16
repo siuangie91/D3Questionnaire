@@ -1,7 +1,7 @@
 var files = [];
 var lastFileNum;
 
-d3.json("datafiles.json", function(error, data) {
+d3.json("datafiles.txt", function(error, data) {
     data.forEach(function(d,i) {
         files.push(d);
     });
@@ -59,7 +59,7 @@ var update = function(data, datasetNum) {
         // Attach click event listener to circles to switch to next dataset
         container.selectAll(".group.dataset" + datasetNum + ":not(:first-of-type)")
             .on("click", function() {
-                update("data" + ++datasetNum + ".json", datasetNum++);
+                update("data" + ++datasetNum + ".txt", datasetNum++);
             });
 
         // If on last dataset, clicking button reloads page.
@@ -74,6 +74,6 @@ var update = function(data, datasetNum) {
 
 d3.select("#start")
     .on("click", function() {
-        update("data1.json", 1);
+        update("data1.txt", 1);
         this.remove();
     });
