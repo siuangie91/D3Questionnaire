@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
     <title>NodeSlideShow_Prototype</title>
     <script src="http://d3js.org/d3.v4.min.js"></script>
     <style>
@@ -14,15 +14,19 @@
             -webkit-text-size-adjust: 100% !important;
         }
         html, body {
-            position: relative;
-            background: #000000;
             border: 0;
             margin: 0;
             padding: 0;
+        }
+
+        body {
+            position: relative;
+            background: #000000;
             width: 1024px;
             height: 768px;
             overflow: hidden;
         }
+
         #container {
             background: #ffffff;
             width: 100%;
