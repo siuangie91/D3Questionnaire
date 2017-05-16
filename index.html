@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NodeSlideShow_Prototype</title>
     <script src="http://d3js.org/d3.v4.min.js"></script>
     <style>
@@ -13,6 +14,7 @@
             -webkit-text-size-adjust: 100% !important;
         }
         html, body {
+            position: relative;
             background: #000000;
             border: 0;
             margin: 0;
@@ -23,8 +25,8 @@
         }
         #container {
             background: #ffffff;
-            width: 1024px;
-            height: 768px;
+            width: 100%;
+            height: 100%;
             position: absolute;
             overflow: hidden;
         }
@@ -34,16 +36,7 @@
             overflow: visible;
             cursor: pointer;
             color: #ffffff;
-        }
-
-        .circle {
-            position: absolute;
-            background: steelblue;
             border-radius: 100%;
-            border: 5px solid green;
-            width: 100%;
-            height: 100%;
-            box-sizing: border-box;
         }
 
         .group:first-of-type {
@@ -63,33 +56,39 @@
             0% {
                 margin-left: 0;
                 margin-top: 0;
-                transform: scale(1);
             }
 
             20% {
-                margin-left: -10px;
-                margin-top: 10px;
-                transform: scale(1.1);
+                margin-left: -5px;
+                margin-top: 5px;
             }
 
             40% {
-                margin-left: 10px;
-                margin-top: -10px;
-                transform: scale(1.05);
+                margin-left: 5px;
+                margin-top: -5px;
             }
 
             60% {
-                margin-left: -10px;
-                margin-top: -10px;
-                transform: scale(1);
+                margin-left: -5px;
+                margin-top: -5px;
             }
 
             80% {
-                margin-left: 10px;
-                margin-top: 10px;
-                transform: scale(1.05);
+                margin-left: 5px;
+                margin-top: 5px;
             }
         }
+
+        .circle {
+            position: absolute;
+            background: steelblue;
+            border-radius: 100%;
+            border: 5px solid green;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
 
         .group:first-of-type .circle {
             background: yellow;
@@ -122,7 +121,7 @@
 
         .copy {
             top: 40%;
-            width: 90%;
+            width: 85%;
         }
 
         .group:first-of-type .copy {

@@ -26,12 +26,12 @@ var update = function(data, datasetNum) {
             .merge(group)
                 .classed("dataset" + datasetNum, true)
                 .style("left", function(d) { return +d.x - d.r + "px";})
-                .style("width", "40px")
-                .style("height", "40px")
-                .style("top", function(d) { return +d.y + 200 + "px";})
-            .transition().duration(1200).delay(function(d,i) { return i * 200 + 400; })
                 .style("width", function(d) { return +d.r * 2 + "px"; })
                 .style("height", function(d) { return +d.r * 2 + "px"; })
+                .style("top", function(d) { return +d.y + 200 + "px";})
+                .style("transform", "scale(0.25)")
+            .transition().duration(1200).delay(function(d,i) { return i * 200; })
+                .style("transform", "scale(1)")
                 .style("top", function(d) { return +d.y - (d.r / 2) + "px";});
 
         // EXIT/REMOVE old <div class="group">s
@@ -46,7 +46,8 @@ var update = function(data, datasetNum) {
 
         // Append <div class="circle">s to <div class="group">s
         groupContainers.append("div")
-            .classed("circle", true);
+            .classed("circle", true)
+            .call(fadeIn, 1200);
 
         // Append <span class="heading">s to <div class="group">s
         groupContainers.append("span")
@@ -77,8 +78,7 @@ var update = function(data, datasetNum) {
 
         function fadeIn(selection, duration) {
             selection.transition()
-                .duration(duration)
-            .transition().duration(800)/*.delay(function(d,i) { return i * 200; })*/
+                .duration(duration).delay(function(d,i) { return i * 200; })
                 .style("opacity", 1);
         }
     });
