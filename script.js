@@ -18,7 +18,7 @@ var update = function(data, datasetNum) {
     d3.json(data, function(error, data) {
         // DATA JOIN <div class="group">s
         var group = container.selectAll("div.group")
-            .data(data);
+            .data(data, function(d) { return d.x; });
 
         // ENTER + UPDATE groups
         group.enter().append("div")
@@ -29,15 +29,16 @@ var update = function(data, datasetNum) {
                 .style("width", "40px")
                 .style("height", "40px")
                 .style("top", function(d) { return +d.y + 200 + "px";})
-            .transition().duration(1200).delay(function(d,i) { return i * 200; })
+            .transition().duration(1200).delay(function(d,i) { return i * 200 + 200; })
                 .style("width", function(d) { return +d.r * 2 + "px"; })
                 .style("height", function(d) { return +d.r * 2 + "px"; })
                 .style("top", function(d) { return +d.y - (d.r / 2) + "px";});
 
         // EXIT/REMOVE old <div class="group">s
         group.html(null) // remove child elems as well
-            .exit().transition().duration(800)
-            .attr("opacity", 0)
+            .exit()
+                .transition().duration(400)
+                .style("opacity", 0)
             .remove();
 
         // Recreate SELECTION of all <div class="group">s, incl. newly appended ones
@@ -56,8 +57,8 @@ var update = function(data, datasetNum) {
         // Append <span class="copy">s to <div class="group">s
         groupContainers.append("span")
             .classed("copy", true)
-            .text(function(d) { return d.copy; })
-            .call(fadeIn, 800);
+            .call(fadeIn, 800)
+            .text(function(d) { return d.copy; });
 
         // Attach click event listener to <div class="group">s to switch to next dataset
         container.selectAll(".group.dataset" + datasetNum + ":not(:first-of-type)")
@@ -76,7 +77,7 @@ var update = function(data, datasetNum) {
         function fadeIn(selection, duration) {
             selection.transition()
                 .duration(duration)
-            .transition().duration(800).delay(function(d,i) { return i * 200; })
+            .transition().duration(800)/*.delay(function(d,i) { return i * 200; })*/
                 .style("opacity", 1);
         }
     });
