@@ -21,57 +21,64 @@
             height: 768px;
             position: absolute;
         }
-        #text-container {
-            background: transparent;
+
+        .group {
+            position: absolute;
+            overflow: visible;
+            cursor: pointer;
+            color: #ffffff;
+        }
+
+        .circle {
+            position: absolute;
+            background: steelblue;
+            border-radius: 100%;
+            border: 5px solid green;
             width: 100%;
             height: 100%;
-            position: absolute;
-            top: 0;
+            box-sizing: border-box;
         }
 
-        svg {
-            position: absolute;
-        }
-        circle {
-            fill: steelblue;
-            stroke: green;
-            stroke-width: 5;
+        .group:first-of-type {
+            cursor: default;
+            color: #000000;
         }
 
-        circle:first-of-type {
-            fill: yellow;
+        .group:first-of-type .circle {
+            background: yellow;
         }
 
-        circle:not(:first-of-type) {
-            cursor: pointer;
-        }
-
-        circle:not(:first-of-type):hover {
-            fill: brown;
-        }
-
-        .text {
-            display: block;
-            position: absolute;
-            text-align: center;
+        .group:not(:first-of-type):hover .circle {
+            background: brown;
         }
 
         span {
             display: block;
-            margin-bottom: 10px;
+            position: absolute;
+            text-align: center;
+            left: 50%;
+            transform: translate(-50%, 0);
+            width: 100%;
         }
 
         .heading {
             font-size: 18px;
             font-weight: bold;
+            top: 20%;
         }
 
-        .heading:first-of-type {
-            font-size: 24px;
+        .group:first-of-type .heading {
+            font-size: 32px;
+            top: 10%;
         }
 
         .copy {
-            padding: 0 10px;
+            top: 40%;
+            width: 90%;
+        }
+
+        .group:first-of-type .copy {
+            font-size: 20px;
         }
 
         #start {
@@ -95,7 +102,6 @@
 </head>
 <body>
     <div id="container">
-        <svg width="1024" height="768"></svg>
         <button id="start">Start</button>
     </div>
 
