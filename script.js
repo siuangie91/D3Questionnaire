@@ -25,16 +25,17 @@ var update = function(data, datasetNum) {
                 .classed("group", true)
             .merge(group)
                 .classed("dataset" + datasetNum, true)
+                .style("left", function(d) { return +d.x - d.r + "px";})
+                .style("width", "40px")
+                .style("height", "40px")
+                .style("top", function(d) { return +d.y + 200 + "px";})
+            .transition().duration(1200).delay(function(d,i) { return i * 200; })
                 .style("width", function(d) { return +d.r * 2 + "px"; })
                 .style("height", function(d) { return +d.r * 2 + "px"; })
-                .style("left", function(d) { return +d.x - d.r + "px";})
-                .style("top", function(d) { return +d.y - (d.r / 1.5) + "px";})
-                .style("opacity", 0)
-            .transition().duration(800).delay(function(d,i) { return i * 200; })
-                .style("opacity", 1);
+                .style("top", function(d) { return +d.y - (d.r / 2) + "px";});
 
-        // EXIT/REMOVE old <div class="text">s
-        group.html(null) // remove child <span class="heading">s and <span class="copy">s as well
+        // EXIT/REMOVE old <div class="group">s
+        group.html(null) // remove child elems as well
             .exit().transition().duration(800)
             .attr("opacity", 0)
             .remove();
@@ -42,32 +43,41 @@ var update = function(data, datasetNum) {
         // Recreate SELECTION of all <div class="group">s, incl. newly appended ones
         var groupContainers = container.selectAll("div.group");
 
-        // Append <div class="circle"> to <div class="group">s
+        // Append <div class="circle">s to <div class="group">s
         groupContainers.append("div")
             .classed("circle", true);
 
-        // Append <span class="heading"> to <div class="group">s
+        // Append <span class="heading">s to <div class="group">s
         groupContainers.append("span")
             .classed("heading", true)
+            .call(fadeIn, 800)
             .text(function(d) { return d.heading; });
 
-        // Append <span class="copy"> to <div class="group">s
+        // Append <span class="copy">s to <div class="group">s
         groupContainers.append("span")
             .classed("copy", true)
-            .text(function(d) { return d.copy; });
+            .text(function(d) { return d.copy; })
+            .call(fadeIn, 800);
 
-        // Attach click event listener to circles to switch to next dataset
+        // Attach click event listener to <div class="group">s to switch to next dataset
         container.selectAll(".group.dataset" + datasetNum + ":not(:first-of-type)")
             .on("click", function() {
                 update("data" + ++datasetNum + ".txt", datasetNum++);
             });
 
-        // If on last dataset, clicking button reloads page.
+        // If on last dataset, clicking reloads page.
         if(container.selectAll(".group.dataset" + lastFileNum).size()) {
             container.selectAll(".group.dataset" + lastFileNum + ":not(:first-of-type)")
                 .on("click", function() {
                     window.location.reload();
                 });
+        }
+
+        function fadeIn(selection, duration) {
+            selection.transition()
+                .duration(duration)
+            .transition().duration(800).delay(function(d,i) { return i * 200; })
+                .style("opacity", 1);
         }
     });
 };

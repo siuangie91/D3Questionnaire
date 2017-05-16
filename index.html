@@ -12,17 +12,21 @@
             -webkit-font-smoothing: antialiased !important;
             -webkit-text-size-adjust: 100% !important;
         }
-        body {
+        html, body {
             background: #000000;
             border: 0;
             margin: 0;
             padding: 0;
+            width: 1024px;
+            height: 768px;
+            overflow: hidden;
         }
         #container {
             background: #ffffff;
             width: 1024px;
             height: 768px;
             position: absolute;
+            overflow: hidden;
         }
 
         .group {
@@ -30,6 +34,7 @@
             overflow: visible;
             cursor: pointer;
             color: #ffffff;
+            transform-origin: center center;
         }
 
         .circle {
@@ -62,6 +67,7 @@
             left: 50%;
             transform: translate(-50%, 0);
             width: 100%;
+            opacity: 0;
         }
 
         .heading {
