@@ -64,7 +64,7 @@ var update = function(data, datasetNum) {
 
         // If on last dataset, clicking button reloads page.
         if(container.selectAll(".group.dataset" + lastFileNum).size()) {
-            container.selectAll(".group.dataset" + lastFileNum)
+            container.selectAll(".group.dataset" + lastFileNum + ":not(:first-of-type)")
                 .on("click", function() {
                     window.location.reload();
                 });
