@@ -11,7 +11,7 @@ d3.json("datafiles.txt", function(error, data) {
     console.log("lastFileNum: "+ lastFileNum);
 });
 
-//var svg = d3.select("svg");
+var svg = d3.select("svg");
 var container = d3.select("#container");
 
 var update = function(data, datasetNum) {
@@ -84,6 +84,35 @@ var update = function(data, datasetNum) {
                 .duration(duration).delay(function(d,i) { return i * 200; })
                 .style("opacity", 1);
         }
+    });
+
+    d3.json(data, function(error, data) {
+        // DATA JOIN <line>s
+        var line = svg.selectAll("line")
+            .data(data, function(d) { return d.x; });
+
+        line.enter().append("line")
+            .attr("x1", function(d,i) {
+                if(data[i+1] !== undefined)
+                    return d.x;
+            })
+            .attr("y1", function(d,i) {
+                if(data[i+1] !== undefined)
+                    return d.y;
+            })
+            .attr("x2", function(d,i) {
+                if(data[i+1] !== undefined)
+                    return data[i+1].x;
+            })
+            .attr("y2", function(d,i) {
+                if(data[i+1] !== undefined)
+                    return data[i+1].y;
+            })
+
+        line.exit()
+                .transition().duration(400)
+                .style("opacity", 0)
+            .remove();
     });
 };
 
