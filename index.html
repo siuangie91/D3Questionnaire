@@ -41,8 +41,38 @@
         line {
             stroke-width: 2;
             stroke: black;
-
         }
+
+        line:nth-of-type(odd) {
+            animation: moveWithCircles 8s ease infinite;
+        }
+
+        line:nth-of-type(even) {
+            animation: moveWithCircles 8s ease infinite reverse;
+        }
+
+        @keyframes moveWithCircles {
+            0% {
+                transform: translate(0,0);
+            }
+
+            20% {
+                transform: translate(-5px, 5px);
+            }
+
+            40% {
+                transform: translate(5px, -5px);
+            }
+
+            60% {
+                transform: translate(-5px,-5px);
+            }
+
+            80% {
+                transform: translate(5px, 5px);
+            }
+        }
+
         #container {
             width: 100%;
             height: 100%;
@@ -196,12 +226,10 @@
     </style>
 </head>
 <body>
-
+    <svg width="1024" height="768"></svg>
     <div id="container">
         <button id="start">Start</button>
     </div>
-
-    <svg width="1024" height="768"></svg>
 
     <script type="text/javascript" src="script.js"></script>
 </body>

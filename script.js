@@ -94,15 +94,18 @@ var update = function(data, datasetNum) {
         line.enter().append("line")
             .merge(line)
                 .style("opacity", 0)
-            .transition().duration(1200).delay(function(d,i) { return i * 200; })
+            .transition().duration(1200).delay(function(d,i) { return i * 200 + 400; })
                 .style("opacity", 1)
                 .attr("x1", function(d,i) { if(data[i+1] !== undefined) return +d.x; })
                 .attr("y1", function(d,i) { if(data[i+1] !== undefined) return +d.y + (d.r / 2); })
+                .attr("x2", function(d,i) { if(data[i+1] !== undefined) return +d.x; })
+                .attr("y2", function(d,i) { if(data[i+1] !== undefined) return +d.y + (d.r / 2); })
+            .transition().duration(800).delay(function(d,i) { return i * 200; })
                 .attr("x2", function(d,i) { if(data[i+1] !== undefined) return +data[i+1].x; })
                 .attr("y2", function(d,i) { if(data[i+1] !== undefined) return +data[i+1].y + (data[i+1].r / 2); });
 
         line.exit()
-                .transition().duration(400)
+                .transition().duration(200)
                 .style("opacity", 0)
             .remove();
     });
