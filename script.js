@@ -15,6 +15,7 @@ var svg = d3.select("svg");
 var container = d3.select("#container");
 
 var update = function(data, datasetNum) {
+    //*********** CIRCLES + TEXT **************//
     d3.json(data, function(error, data) {
         // DATA JOIN <div class="group">s
         var group = container.selectAll("div.group")
@@ -86,13 +87,15 @@ var update = function(data, datasetNum) {
         }
     });
 
+    //*********** CONNECTING LINES **************//
     d3.json(data, function(error, data) {
         // DATA JOIN <line>s
-        var line = svg.selectAll("line")
+        var line = svg.selectAll("line.connector")
             .data(data, function(d) { return d.x; });
 
         // ENTER + UPDATE lines
         line.enter().append("line")
+                .classed("connector", true)
             .merge(line)
                 .style("opacity", 0)
             .transition().duration(1200).delay(function(d,i) { return i * 200 + 400; })
@@ -110,7 +113,35 @@ var update = function(data, datasetNum) {
                 .transition().duration(200)
                 .style("opacity", 0)
             .remove();
+
     });
+
+    //*********** BOOKEND LINES **************//
+    d3.json(data, function(error, data) {
+        // DATA JOIN <line class="bookend">s
+        bookend = svg.selectAll("line.bookend")
+            .data(data.filter(function(d,i) { return (i === 0) || (i === data.length - 1); })); // get first and last items only (the bookends)
+
+        // ENTER + UPDATE <line class="bookend">s
+        bookend.enter().append("line")
+            .merge(bookend)
+                .classed("bookend", true)
+                .attr("id", function(d,i) { return (i == 0) ? "begin" : "end"; })
+                .attr("x1", function(d,i) { return (i == 0) ? 0 : d.x; })
+                .attr("y1", function(d,i) { return (i == 0) ? 768 : d.y; })
+                .attr("x2", function(d,i) { return (i == 0) ? 0 : d.x; })
+                .attr("y2", function(d,i) { return (i == 0) ? 768 : d.y; })
+            .transition().duration(800).delay(function(d,i) { return (i == 0) ? 1200 : data.length * 200 + 1400; })
+                .attr("x2", function(d,i) { return (i == 0) ? d.x : 1024; })
+                .attr("y2", function(d,i) { return (i == 0) ? d.y : 768; });
+
+        // EXIT/REMOVE old <line class="bookend">s
+        bookend.exit()
+                .transition().duration(200)
+                .style("opacity", 0)
+            .remove();
+
+    })
 };
 
 d3.select("#start")
@@ -118,3 +149,17 @@ d3.select("#start")
         update("data1.txt", 1);
         this.remove();
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
