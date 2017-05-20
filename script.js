@@ -22,17 +22,20 @@ var update = function(data, datasetNum) {
 
         // ENTER + UPDATE groups
         group.enter().append("div")
-                .classed("group", true)
-            .merge(group)
-                .classed("dataset" + datasetNum, true)
-                .style("left", function(d) { return +d.x - d.r + "px";})
-                .style("width", function(d) { return +d.r * 2 + "px"; })
-                .style("height", function(d) { return +d.r * 2 + "px"; })
-                .style("top", function(d) { return +d.y + 200 + "px";})
-                .style("transform", "scale(0.25)")
-            .transition().duration(1200).delay(function(d,i) { return i * 200; })
-                .style("transform", "scale(1)")
-                .style("top", function(d) { return +d.y - (d.r / 2) + "px";});
+            .classed("group", true)
+            .classed("dataset" + datasetNum, true)
+        .merge(group)
+            .style("left", function(d) { return +d.x - d.r + "px";})
+            .style("top", function(d) { return +d.y + 200 + "px";})
+            .style("width", function(d) { return +d.r * 2 + "px"; })
+            .style("height", function(d) { return +d.r * 2 + "px"; })
+            .style("transform", "scale(0.25)")
+            .style("opacity", 0)
+        .transition().duration(400).delay(450)
+            .style("opacity", 1)
+        .transition().duration(1200).delay(function(d,i) { return i * 200; })
+            .style("transform", "scale(1)")
+            .style("top", function(d) { return +d.y - (d.r / 2) + "px";});
 
         // EXIT/REMOVE old <div class="group">s
         group.html(null) // remove child elems as well
