@@ -91,6 +91,7 @@ var update = function(data, datasetNum) {
         var line = svg.selectAll("line")
             .data(data, function(d) { return d.x; });
 
+        // ENTER + UPDATE lines
         line.enter().append("line")
             .merge(line)
                 .style("opacity", 0)
@@ -100,10 +101,11 @@ var update = function(data, datasetNum) {
                 .attr("y1", function(d,i) { if(data[i+1] !== undefined) return +d.y + (d.r / 2); })
                 .attr("x2", function(d,i) { if(data[i+1] !== undefined) return +d.x; })
                 .attr("y2", function(d,i) { if(data[i+1] !== undefined) return +d.y + (d.r / 2); })
-            .transition().duration(800).delay(function(d,i) { return i * 200; })
+            .transition().duration(800)
                 .attr("x2", function(d,i) { if(data[i+1] !== undefined) return +data[i+1].x; })
                 .attr("y2", function(d,i) { if(data[i+1] !== undefined) return +data[i+1].y + (data[i+1].r / 2); });
 
+        // EXIT/REMOVE old lines
         line.exit()
                 .transition().duration(200)
                 .style("opacity", 0)
