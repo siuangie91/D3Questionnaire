@@ -92,22 +92,14 @@ var update = function(data, datasetNum) {
             .data(data, function(d) { return d.x; });
 
         line.enter().append("line")
-            .attr("x1", function(d,i) {
-                if(data[i+1] !== undefined)
-                    return d.x;
-            })
-            .attr("y1", function(d,i) {
-                if(data[i+1] !== undefined)
-                    return d.y;
-            })
-            .attr("x2", function(d,i) {
-                if(data[i+1] !== undefined)
-                    return data[i+1].x;
-            })
-            .attr("y2", function(d,i) {
-                if(data[i+1] !== undefined)
-                    return data[i+1].y;
-            })
+            .merge(line)
+                .style("opacity", 0)
+            .transition().duration(1200).delay(function(d,i) { return i * 200; })
+                .style("opacity", 1)
+                .attr("x1", function(d,i) { if(data[i+1] !== undefined) return +d.x; })
+                .attr("y1", function(d,i) { if(data[i+1] !== undefined) return +d.y + (d.r / 2); })
+                .attr("x2", function(d,i) { if(data[i+1] !== undefined) return +data[i+1].x; })
+                .attr("y2", function(d,i) { if(data[i+1] !== undefined) return +data[i+1].y + (data[i+1].r / 2); });
 
         line.exit()
                 .transition().duration(400)

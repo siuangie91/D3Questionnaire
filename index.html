@@ -17,6 +17,10 @@
             -webkit-backface-visibility: hidden !important;
             -webkit-font-smoothing: antialiased !important;
             -webkit-text-size-adjust: 100% !important;
+            box-sizing: border-box;
+        }
+        html {
+            background: #000000;
         }
         html, body {
             border: 0;
@@ -37,6 +41,7 @@
         line {
             stroke-width: 2;
             stroke: black;
+
         }
         #container {
             width: 100%;
@@ -158,6 +163,7 @@
             border-radius: 100%;
             cursor: pointer;
             animation: throb 6s ease infinite;
+            z-index: 1000;
         }
 
         @keyframes throb {
@@ -190,10 +196,12 @@
     </style>
 </head>
 <body>
-    <svg width="1024" height="768"></svg>
+
     <div id="container">
         <button id="start">Start</button>
     </div>
+
+    <svg width="1024" height="768"></svg>
 
     <script type="text/javascript" src="script.js"></script>
 </body>
