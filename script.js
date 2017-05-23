@@ -11,7 +11,7 @@ d3.json("datafiles.txt", function(error, data) {
     console.log("lastFileNum: "+ lastFileNum);
 });
 
-var svg = d3.select("svg");
+var svg = d3.select("svg#dynamic");
 var container = d3.select("#container");
 
 var update = function(data, datasetNum) {
