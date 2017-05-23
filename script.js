@@ -1,3 +1,5 @@
+// DYNAMIC, DATA-BOUND CONTENT
+
 var files = [];
 var lastFileNum;
 
@@ -151,15 +153,11 @@ d3.select("#start")
     });
 
 
+// STATIC CONTENT
+var bkgdCircles = d3.select("g.bkgd-circles");
 
+bkgdCircles.selectAll("circle:nth-of-type(2n)")
+    .attr("r", 30);
 
-
-
-
-
-
-
-
-
-
-
+bkgdCircles.selectAll("circle:nth-of-type(3n+1)")
+    .attr("r", 10);

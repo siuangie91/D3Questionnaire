@@ -32,14 +32,14 @@ svg {
 
 line {
     stroke-width: 1;
-    stroke: black;
+    stroke: #666;
 }
 
-line:nth-of-type(odd) {
+#dynamic line:nth-of-type(odd) {
     animation: moveWithCircles 8s ease infinite;
 }
 
-line:nth-of-type(even) {
+#dynamic line:nth-of-type(even) {
     animation: moveWithCircles 8s ease infinite reverse;
 }
 
@@ -167,8 +167,8 @@ span {
     font-size: 26px;
     font-weight: bold;
     left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
+    top: 25%;
+    -webkit-transform: translate(-50%, 0%);
     transform: translate(-50%, -50%);
     background: steelblue;
     outline: none;
@@ -201,3 +201,67 @@ span {
         box-shadow: none;
     }
 }
+
+
+.bkgd-circles circle:nth-of-type(odd) {
+    fill: steelblue;
+}
+
+.bkgd-circles circle:nth-of-type(even) {
+    fill: purple;
+}
+
+.bkgd-circles circle:nth-of-type(n),
+.bkgd-lines line:nth-of-type(n) {
+    animation: moveWithCircles 8s ease infinite alternate;
+}
+
+.bkgd-circles circle:nth-of-type(2n),
+.bkgd-lines line:nth-of-type(2n) {
+    animation: moveWithCircles 8s ease infinite reverse;
+}
+
+.bkgd-circles circle:nth-of-type(3n+1),
+.bkgd-lines line:nth-of-type(3n+1) {
+    animation: moveWithCircles 8s ease infinite;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
