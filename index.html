@@ -6,9 +6,10 @@
     <title>NodeSlideShow_Prototype</title>
     <link rel="stylesheet" href="style.css">
     <script src="http://d3js.org/d3.v4.min.js"></script>
-    <script src="scale.js"></script>
 </head>
 <body>
+    <div id="white"></div>
+    <svg id="dynamic" width="1024" height="768"></svg>
     <svg id="background" width="1024" height="768">
         <g class="bkgd-lines">
             <line x1="0" y1="670" x2="100" y2="700"></line>
@@ -81,11 +82,11 @@
             <circle cx="671" cy="651" r="20"></circle>
         </g>
     </svg>
-    <svg id="dynamic" width="1024" height="768"></svg>
     <div id="container">
         <button id="start">Start</button>
     </div>
 
+    <script type="text/javascript" src="scale.js"></script>
     <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
