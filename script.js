@@ -107,7 +107,8 @@ var update = function(data, datasetNum) {
 
         // ENTER + UPDATE groups
         lines.enter().append("g")
-            .merge(lines);
+            .merge(lines)
+            .attr("name", function(d,i) { return i; });
 
         // EXIT + REMOVE old groups
         lines.html(null)
@@ -136,6 +137,7 @@ var update = function(data, datasetNum) {
         // Append "random" line set 2
         lineGroups.append("line")
             .classed("connector", true)
+            .attr("name", function(d,i) { return i; })
                 .style("opacity", 0)
             .transition().duration(800).delay(data.length * 200 + 100)
                 .style("opacity", 1)
