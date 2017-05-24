@@ -123,13 +123,13 @@ var update = function(data, datasetNum) {
         lineGroups.append("line")
             .classed("connector", true)
                 .style("opacity", 0)
-            .transition().duration(800).delay(function(d,i) { return i * 200 + 600; })
+            .transition().duration(800).delay(data.length * 200 + 100)
                 .style("opacity", 1)
                 .attr("x1", function(d,i) { return +d.x; })
                 .attr("y1", function(d,i) { return +d.y + (d.r / 2); })
                 .attr("x2", function(d,i) { return +d.x; })
                 .attr("y2", function(d,i) { return +d.y + (d.r / 2); })
-            .transition().duration(800)
+            .transition().duration(1200)
                 .attr("x2", function(d,i) { return +d.x + Math.round(randomInt() * 10000); })
                 .attr("y2", function(d,i) { return +d.y + (d.r / 2) + Math.round(randomInt() * 5000); });
 
@@ -137,13 +137,13 @@ var update = function(data, datasetNum) {
         lineGroups.append("line")
             .classed("connector", true)
                 .style("opacity", 0)
-            .transition().duration(800).delay(function(d,i) { return i * 200 + 600; })
+            .transition().duration(800).delay(data.length * 200 + 100)
                 .style("opacity", 1)
                 .attr("x1", function(d,i) { return +d.x; })
                 .attr("y1", function(d,i) { return +d.y + (d.r / 2); })
                 .attr("x2", function(d,i) { return +d.x; })
                 .attr("y2", function(d,i) { return +d.y + (d.r / 2); })
-            .transition().duration(800)
+            .transition().duration(1200)
                 .attr("x2", function(d,i) { return +d.x + Math.round(randomInt() * 5000); })
                 .attr("y2", function(d,i) { return +d.y + (d.r / 2) + Math.round(randomInt() * 10000); });
 
