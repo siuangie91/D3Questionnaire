@@ -1,3 +1,13 @@
+// STATIC CONTENT
+var bkgdCircles = d3.select("g.bkgd-circles");
+
+bkgdCircles.selectAll("circle:nth-of-type(2n)")
+    .attr("r", 30);
+
+bkgdCircles.selectAll("circle:nth-of-type(3n+1)")
+    .attr("r", 10);
+
+
 // DYNAMIC, DATA-BOUND CONTENT
 
 var files = [];
@@ -89,62 +99,58 @@ var update = function(data, datasetNum) {
         }
     });
 
-    //*********** CONNECTING LINES **************//
+    //*********** RANDOM CONNECTING LINES **************//
     d3.json(data, function(error, data) {
         // DATA JOIN <line>s
-        var line = svg.selectAll("line.connector")
+        var lines = svg.selectAll("g")
             .data(data, function(d) { return d.x; });
 
-        // ENTER + UPDATE lines
-        line.enter().append("line")
-                .classed("connector", true)
-            .merge(line)
-                .style("opacity", 0)
-            .transition().duration(1200).delay(function(d,i) { return i * 200 + 400; })
-                .style("opacity", 1)
-                .attr("x1", function(d,i) { if(data[i+1] !== undefined) return +d.x; })
-                .attr("y1", function(d,i) { if(data[i+1] !== undefined) return +d.y + (d.r / 2); })
-                .attr("x2", function(d,i) { if(data[i+1] !== undefined) return +d.x; })
-                .attr("y2", function(d,i) { if(data[i+1] !== undefined) return +d.y + (d.r / 2); })
-            .transition().duration(800)
-                .attr("x2", function(d,i) { if(data[i+1] !== undefined) return +data[i+1].x; })
-                .attr("y2", function(d,i) { if(data[i+1] !== undefined) return +data[i+1].y + (data[i+1].r / 2); });
+        // ENTER + UPDATE groups
+        lines.enter().append("g")
+            .merge(lines);
 
-        // EXIT/REMOVE old lines
-        line.exit()
+        // EXIT + REMOVE old groups
+        lines.html(null)
+            .exit()
                 .transition().duration(200)
                 .style("opacity", 0)
             .remove();
+
+        // Recreate SELECTION of all <g>s, incl. newly appended ones
+        var lineGroups = svg.selectAll("g");
+
+        // Append "random" line set 1
+        lineGroups.append("line")
+            .classed("connector", true)
+                .style("opacity", 0)
+            .transition().duration(800).delay(function(d,i) { return i * 200 + 600; })
+                .style("opacity", 1)
+                .attr("x1", function(d,i) { return +d.x; })
+                .attr("y1", function(d,i) { return +d.y + (d.r / 2); })
+                .attr("x2", function(d,i) { return +d.x; })
+                .attr("y2", function(d,i) { return +d.y + (d.r / 2); })
+            .transition().duration(800)
+                .attr("x2", function(d,i) { return +d.x + Math.round(randomInt() * 10000); })
+                .attr("y2", function(d,i) { return +d.y + (d.r / 2) + Math.round(randomInt() * 5000); });
+
+        // Append "random" line set 2
+        lineGroups.append("line")
+            .classed("connector", true)
+                .style("opacity", 0)
+            .transition().duration(800).delay(function(d,i) { return i * 200 + 600; })
+                .style("opacity", 1)
+                .attr("x1", function(d,i) { return +d.x; })
+                .attr("y1", function(d,i) { return +d.y + (d.r / 2); })
+                .attr("x2", function(d,i) { return +d.x; })
+                .attr("y2", function(d,i) { return +d.y + (d.r / 2); })
+            .transition().duration(800)
+                .attr("x2", function(d,i) { return +d.x + Math.round(randomInt() * 5000); })
+                .attr("y2", function(d,i) { return +d.y + (d.r / 2) + Math.round(randomInt() * 10000); });
 
     });
 
-    //*********** BOOKEND LINES **************//
-    d3.json(data, function(error, data) {
-        // DATA JOIN <line class="bookend">s
-        bookend = svg.selectAll("line.bookend")
-            .data(data.filter(function(d,i) { return (i === 0) || (i === data.length - 1); })); // get first and last items only (the bookends)
-
-        // ENTER + UPDATE <line class="bookend">s
-        bookend.enter().append("line")
-            .merge(bookend)
-                .classed("bookend", true)
-                .attr("id", function(d,i) { return (i == 0) ? "begin" : "end"; })
-                .attr("x1", function(d,i) { return (i == 0) ? 0 : d.x; })
-                .attr("y1", function(d,i) { return (i == 0) ? 768 : d.y; })
-                .attr("x2", function(d,i) { return (i == 0) ? 0 : d.x; })
-                .attr("y2", function(d,i) { return (i == 0) ? 768 : d.y; })
-            .transition().duration(800).delay(function(d,i) { return (i == 0) ? 1200 : data.length * 200 + 1400; })
-                .attr("x2", function(d,i) { return (i == 0) ? d.x : 1024; })
-                .attr("y2", function(d,i) { return (i == 0) ? d.y : 768; });
-
-        // EXIT/REMOVE old <line class="bookend">s
-        bookend.exit()
-                .transition().duration(200)
-                .style("opacity", 0)
-            .remove();
-
-    })
 };
+
 
 d3.select("#start")
     .on("click", function() {
@@ -152,12 +158,6 @@ d3.select("#start")
         this.remove();
     });
 
-
-// STATIC CONTENT
-var bkgdCircles = d3.select("g.bkgd-circles");
-
-bkgdCircles.selectAll("circle:nth-of-type(2n)")
-    .attr("r", 30);
-
-bkgdCircles.selectAll("circle:nth-of-type(3n+1)")
-    .attr("r", 10);
+function randomInt() {
+    return Math.random() * 2 - 1;
+}
