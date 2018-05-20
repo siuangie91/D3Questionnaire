@@ -6,7 +6,7 @@
 
 Dynamic D3.js questionnaire. This is a prototype of a concept for a major pharmaceutical convention. ***NOT*** a node.js project.
 
-**Demo:** [http://projects.angiesiudevworks.com/nodeslideshow_prototype/](http://projects.angiesiudevworks.com/nodeslideshow_prototype/)
+**Demo:** [http://projects.angiesiudevworks.com/d3questionnaire/](http://projects.angiesiudevworks.com/d3questionnaire/)
 
 Multiple choice questions and answers are dynamically pulled from JSON objects. When an answer is selected (clicked or tapped), the next dataset is loaded. 
 
