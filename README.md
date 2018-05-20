@@ -1,6 +1,6 @@
 # D3js Questionnaire
 
-Dynamic D3.js questionnaire. This is a front-end-only prototype of a concept for a major pharmaceutical convention. Built exclusively for the iPad.
+Dynamic D3.js questionnaire. This is a front-end-only prototype of a concept built exclusively for the iPad.
 
 **Demo:** [http://projects.angiesiudevworks.com/d3questionnaire/](http://projects.angiesiudevworks.com/d3questionnaire/)
 
