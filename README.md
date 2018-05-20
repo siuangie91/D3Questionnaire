@@ -4,7 +4,7 @@
 ![build](https://img.shields.io/badge/build-PASSING-brightgreen.svg)
 ![tests](https://img.shields.io/badge/tests-SKIPPED-orange.svg)
 
-Dynamic D3.js questionnaire. ***NOT*** a node.js project.
+Dynamic D3.js questionnaire. This is a prototype of a concept for a major pharmaceutical convention. ***NOT*** a node.js project.
 
 **Demo:** [http://projects.angiesiudevworks.com/nodeslideshow_prototype/](http://projects.angiesiudevworks.com/nodeslideshow_prototype/)
 
